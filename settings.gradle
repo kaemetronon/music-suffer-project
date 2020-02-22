@@ -1,0 +1,7 @@
+rootProject.name = 'MusicSufferService'
+include 'discovery-server'
+include 'api-gateway-service'
+include 'user-service'
+include 'library-service'
+include 'stream-service'
+
