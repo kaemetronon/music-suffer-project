@@ -4,4 +4,5 @@ include 'api-gateway-service'
 include 'user-service'
 include 'library-service'
 include 'stream-service'
+include 'admin-service'
 
