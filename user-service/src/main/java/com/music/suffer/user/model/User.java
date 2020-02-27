@@ -1,5 +1,6 @@
 package com.music.suffer.user.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +24,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String email;
+    @JsonIgnore
     private String password;
     private String firstName;
     private String lastName;

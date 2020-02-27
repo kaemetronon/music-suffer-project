@@ -42,6 +42,7 @@ public class JwtTokenGenerator implements TokenGenerator {
     private String generateJwt(Map<String, Object> claims, long expiration) {
         Date expirationDate = Date.from(Instant.now().plusSeconds(expiration));
         return Jwts.builder()
+                .setHeaderParam("typ", "JWT")
                 .setClaims(claims)
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, "secret")
