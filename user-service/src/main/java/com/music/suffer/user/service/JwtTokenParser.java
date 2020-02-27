@@ -25,7 +25,7 @@ public class JwtTokenParser implements TokenParser {
                     .setSigningKey("secret")
                     .parseClaimsJws(token.substring(BEARER_PREFIX.length()))
                     .getBody();
-            Long userId = claims.get("userId", Long.class);
+            Long userId = Long.valueOf(claims.getId());
             return userRepository.findById(userId).orElseThrow(() ->
                     new RuntimeException("Invalid token: no user found"));
         } catch (Exception ex) {

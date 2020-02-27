@@ -34,10 +34,10 @@ public class RouteConfig {
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("user-api", r -> r.path("/api/user/**")
-                    .filters(f -> f.rewritePath("/api/user/(?<segment>.*)", "${segment}"))
+                    .filters(f -> f.rewritePath("/api/user/(?<segment>.*)", "/${segment}"))
                     .uri("lb://user-service"))
-                .route("library-service", r -> r.path("/spi/library/**")
-                    .filters(f -> f.rewritePath("/api/library/(?<segment>.*)", "${segment}"))
+                .route("library-service", r -> r.path("/api/library/**")
+                    .filters(f -> f.rewritePath("/api/library/(?<segment>.*)", "/${segment}"))
                     .uri("lb://library-service")
                     .filter(securityFilter))
                 .build();
