@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: upload-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/upload_db
+    username: postgres
+    password: verystrongpassword
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8083
+
+upload: "/C:/Users/Igor/IdeaProjects/anton\music-suffer-project/uploads"

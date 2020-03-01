@@ -5,4 +5,8 @@ include 'user-service'
 include 'library-service'
 include 'stream-service'
 include 'admin-service'
+include 'upload-service'
+include 'mail-service'
+include 'mediaUpload-service'
+include 'notification-service'
 

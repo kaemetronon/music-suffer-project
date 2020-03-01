@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: notification-service
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: agilestestmail@gmail.com
+    password: verystrongpassword
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+
+server:
+  port: 8084
