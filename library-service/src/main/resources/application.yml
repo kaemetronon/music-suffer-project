@@ -14,8 +14,4 @@ spring:
       ddl-auto: update
 
 server:
-  port: 8082
-
-upload:
-  image: "C:\Users\Igor\IdeaProjects\anton\music-suffer-project\uploads\img"
-  audio: "C:\Users\Igor\IdeaProjects\anton\music-suffer-project\uploads\audio"
+  port: 8085

@@ -19,7 +19,7 @@ jwt:
   jwtSecret: secretKey
 
 server:
-          port: 8081
+  port: 8081
 
 eureka:
   client:

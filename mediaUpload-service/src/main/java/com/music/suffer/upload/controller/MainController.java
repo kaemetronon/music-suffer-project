@@ -1,14 +1,13 @@
 package com.music.suffer.upload.controller;
 
 import com.music.suffer.upload.service.implementation.UploadServiceImpl;
-import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/media-upload")
 public class MainController {
 

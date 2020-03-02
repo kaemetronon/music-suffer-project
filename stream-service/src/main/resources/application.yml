@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-service
+    name: strem-service
 
   datasource:
     url: jdbc:postgresql://localhost:5432/music_db
@@ -12,3 +12,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+server:
+  port: 8082

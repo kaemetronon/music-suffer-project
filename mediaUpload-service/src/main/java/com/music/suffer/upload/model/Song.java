@@ -9,11 +9,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "song_paths")
 @Data
-@AllArgsConstructor
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public Song(String songPath) {
+        this.songPath = songPath;
+    }
 
     private String songPath;
 }

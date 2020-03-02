@@ -15,7 +15,7 @@ public interface MusicService {
 
     boolean updateArtist(Artist artist, String name, String description, String year, MultipartFile file);
 
-    boolean addSong(Album album, String song);
+    boolean addSong(Album album, String song, MultipartFile file);
 
     void deleteSong(Album album, Song song);
 }

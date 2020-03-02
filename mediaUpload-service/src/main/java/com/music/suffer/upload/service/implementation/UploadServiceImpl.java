@@ -17,7 +17,7 @@ import java.io.IOException;
 @Service
 @Transactional
 public class UploadServiceImpl implements UploadService {
-    @Value("${upload.img}")
+    @Value("${upload.image}")
     private String imgPath;
     @Value("${upload.audio}")
     private String audioPath;
@@ -47,6 +47,12 @@ public class UploadServiceImpl implements UploadService {
                 destination.mkdir();
             }
             path += "/" + nameWithUUID;
+            if (type.equals("img")) {
+                path += ".jpg";
+            } else if(type.equals("audio")) {
+                path += ".mp3";
+//                path += ".ogg";   я пока не определился
+            }
             try {
                 file.transferTo(new File(path));
             } catch (IOException e) {

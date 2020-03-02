@@ -8,12 +8,15 @@ spring:
     password: verystrongpassword
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
+
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
 
 server:
-  port: 8083
+  port: 8084
 
-upload: "/C:/Users/Igor/IdeaProjects/anton\music-suffer-project/uploads"
+upload:
+  image: C:\Users\Igor\IdeaProjects\anton\music-suffer-project\uploads\img
+  audio: C:\Users\Igor\IdeaProjects\anton\music-suffer-project\uploads\audio
