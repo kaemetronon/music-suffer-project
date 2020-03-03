@@ -8,7 +8,7 @@ import com.music.suffer.library.repository.AlbumRepository;
 import com.music.suffer.library.repository.ArtistRepository;
 import com.music.suffer.library.repository.SongRepository;
 import com.music.suffer.library.service.MusicService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,20 +19,11 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class MusicServiceImpl implements MusicService {
-    private ArtistRepository artistRepository;
-    private AlbumRepository albumRepository;
-    private SongRepository songRepository;
-
-    @Autowired
-    public MusicServiceImpl(ArtistRepository artistRepository,
-                            AlbumRepository albumRepository,
-                            SongRepository songRepository) {
-        this.artistRepository = artistRepository;
-        this.albumRepository = albumRepository;
-        this.songRepository = songRepository;
-    }
-
+    private final ArtistRepository artistRepository;
+    private final AlbumRepository albumRepository;
+    private final SongRepository songRepository;
 
     @Override
     public boolean addArtist(String name, String description, String year, MultipartFile file) {
@@ -50,7 +41,7 @@ public class MusicServiceImpl implements MusicService {
             return false;
         }
         artist.setImagePath(imageName);
-        uploadFile(file, imageName, "img");
+//        uploadFile(file, imageName, "img");
 
         artistRepository.save(artist);
         return true;
@@ -79,7 +70,7 @@ public class MusicServiceImpl implements MusicService {
             return false;
         }
         album.setCoverPath(coverName);
-        uploadFile(cover, coverName, "img");
+//        uploadFile(cover, coverName, "img");
 
         System.out.println("DB");
         albumRepository.save(album);
@@ -102,24 +93,29 @@ public class MusicServiceImpl implements MusicService {
             return false;
         }
         album.setCoverPath(coverName);
-        uploadFile(cover, coverName, "img");
+//        uploadFile(cover, coverName, "img");
 
         albumRepository.save(album);
         return true;
     }
 
+    // я знаю, о есть какая то аннотация для поля file что оно не должно бытьь обязательным, но вот не помню ее
     @Override
     public boolean updateArtist(Artist artist, String name, String description, String year, MultipartFile file) {
         artist.setName(name);
         artist.setDescription(description);
         artist.setYear(year);
 
-        String imageName = makePath(file);
-        if (imageName == null) {
-            return false;
+        String imageName = null;
+        if (file != null) {
+            imageName = makePath(file);
+            if (imageName == null) {
+                return false;
+            }
         }
+
         artist.setImagePath(imageName);
-        uploadFile(file, imageName, "img");
+//        uploadFile(file, imageName, "img");
 
         artistRepository.save(artist);
         return true;
@@ -140,7 +136,7 @@ public class MusicServiceImpl implements MusicService {
         if (audioName == null) {
             return false;
         }
-        uploadFile(file, audioName, "audio");
+//        uploadFile(file, audioName, "audio");
 
         return true;
     }

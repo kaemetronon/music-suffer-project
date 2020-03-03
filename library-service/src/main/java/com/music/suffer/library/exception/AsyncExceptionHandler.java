@@ -1,4 +1,4 @@
-package com.music.streaming.exception;
+package com.music.suffer.library.exception;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 

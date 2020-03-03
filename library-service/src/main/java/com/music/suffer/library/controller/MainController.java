@@ -17,24 +17,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Controller
 @RequiredArgsConstructor
 public class MainController {
     private final MainPageService mainPageService;
     private final ArtistRepository artistRepository;
 
-    @Autowired
-    public MainController(MainPageService mps, ArtistRepository ar) {
-        mainPageService = mps;
-        artistRepository = ar;
-    }
-
-    //ну а в этом классе все методы такие, я хз что с ними делать
+    //если это все рест конроллеры, то как они верну страницу типа модели?
     @RequestMapping(method = RequestMethod.GET, value = "/")
-    public String greetings(Model model) {
+    public String greetings() {
         return "greetings";
     }
 
+    //пока хз что писать ниже
     @RequestMapping(method = RequestMethod.GET, value = "/main")
     public String main(
             Model model,
@@ -54,15 +54,14 @@ public class MainController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/artists")
-    public String artists(Model model, String filter) {
+    public List<Artist> artists(String filter) {
         Iterable<Artist> artists;
         if (StringUtils.isEmpty(filter)) {
             artists = mainPageService.getAllArtists();
         } else {
             artists = mainPageService.getArtistByQuery(filter);
         }
-        model.addAttribute("artists", artists);
-        model.addAttribute("filter", filter);
-        return "artists-list";
+        return StreamSupport.stream(artists.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

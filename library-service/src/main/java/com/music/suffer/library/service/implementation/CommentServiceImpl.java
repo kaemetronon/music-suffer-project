@@ -19,11 +19,6 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
 
-    @Autowired
-    public CommentServiceImpl(CommentRepository cr) {
-        commentRepository = cr;
-    }
-
     @Override
     public boolean addComment(Album album, User user, String text, String mark) {
         Comment comment = new Comment();

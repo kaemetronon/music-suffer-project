@@ -21,12 +21,6 @@ public class MainPageServiceImpl implements MainPageService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
 
-    @Autowired
-    public MainPageServiceImpl(AlbumRepository albumRepository, ArtistRepository artistRepository) {
-        this.albumRepository = albumRepository;
-        this.artistRepository = artistRepository;
-    }
-
     @Override
     public Page<Album> getAll(Pageable pageable) {
         return albumRepository.findAll(pageable);

@@ -4,17 +4,13 @@ import com.music.suffer.library.model.Role;
 import com.music.suffer.library.model.User;
 import com.music.suffer.library.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,26 +22,20 @@ import java.util.stream.Collectors;
 public class AdminController {
     private final UserRepository userRepository;
 
-    @Autowired
-    public AdminController(UserRepository ur) {
-        userRepository = ur;
-    }
-
-    @GetMapping
-    public String userList(Model model) {
-        model.addAttribute("users", userRepository.findAll());
-        return "user-list";
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public List<User> userList() {
+        return userRepository.findAll();
     }
 
     @GetMapping("{user}")
-    public String userPage(@PathVariable User user, Model model) {
-        model.addAttribute("user", user);
-        model.addAttribute("roles", Role.values());
-        return "user-edit";
+    public User userPage(@PathVariable User user) {
+        return user;
     }
 
+    //тут я немного не понял. Если мы сохраняем юзера,
+    // как мы его можем найи в базе, если его еще не существует в принципе?
     @PostMapping
-    public String userSave(
+    public User userSave(
             @RequestParam String username,
             @RequestParam String email,
             @RequestParam String firstName,
@@ -67,6 +57,6 @@ public class AdminController {
             }
         }
         userRepository.save(user);
-        return "redirect:/user";
+        return user;
     }
 }
